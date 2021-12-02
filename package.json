@@ -1,0 +1,17 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of Code solutions",
+  "main": "src/app.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ehdes",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "node-fetch": "^3.1.0",
+    "uuid": "^8.3.2"
+  }
+}
