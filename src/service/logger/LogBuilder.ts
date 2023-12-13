@@ -15,7 +15,7 @@ export default class LogBuilder {
      * @static
      * @memberof LogBuilder
      */
-    static $logRuntime(appendCallstack: "debug"|"always"|"none" = "none", infos: string[] = []): MethodDecorator {
+    static $logRuntime(appendCallstack: "debug"|"always"|"none" = "none", infos: string[] = [], appendInfoObject: "debug"|"always"|"none" = "none"): MethodDecorator {
         return function(obj: any, symbol: string, desc: PropertyDescriptor) {
             const original = desc.value;
 
@@ -55,9 +55,14 @@ export default class LogBuilder {
                     builder.appendCallStack();
                 }
 
-                builder
-                    .object("info", infoObj)
-                    .done();
+                if(appendCallstack === "debug") {
+                    builder.debugObject("info", infoObj)
+                }
+                else if(appendCallstack === "always") {
+                    builder.object("info", infoObj)
+                }
+
+                builder.done();
 
                 return ret;
             };

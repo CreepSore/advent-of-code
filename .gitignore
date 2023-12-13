@@ -1,13 +1,16 @@
-## Webbase ##
+## Appbase ##
 
 extensions/*
 docs/
 !extensions/Core*
 !extensions/Custom.Template/
 !extensions/Custom.Template.webpack.json
+!extensions/AdventOfCode*
 cfg/*
 extensions/disabled.json
 storage.db
+
+aoc-cache/
 
 #############
 
