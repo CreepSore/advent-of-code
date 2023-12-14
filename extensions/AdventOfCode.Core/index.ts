@@ -10,15 +10,16 @@ import IAdventOfCodeChallenge from "./logic/IAdventOfCodeChallenge";
 import LogBuilder from "@service/logger/LogBuilder";
 
 class AdventOfCodeCoreConfig {
+    runBenchmarks: boolean = false;
     repositories: {[key: string]: AdventOfCodeRepositoryOptions} = {
-        "2023": {
+        2023: {
             id: "2023",
             baseUrl: "https://adventofcode.com/2023",
             cookie: "",
             dataCacheLocation: "./aoc-cache/2023/",
             skipCache: false,
-        }
-    }
+        },
+    };
 }
 
 export default class AdventOfCodeCore implements IExtension {
@@ -61,7 +62,7 @@ export default class AdventOfCodeCore implements IExtension {
 
     }
 
-    registerChallenge(challenge: IAdventOfCodeChallenge<any>) {
+    registerChallenge(challenge: IAdventOfCodeChallenge<any>): void {
         this.challenges.add(challenge);
     }
 
@@ -74,11 +75,14 @@ export default class AdventOfCodeCore implements IExtension {
 
         executionContext.application.onAfterStartup(async() => {
             await this.executeChallenges();
-            // await this.executePerformanceBenchmarks();
+
+            if(this.config.runBenchmarks) {
+                await this.executePerformanceBenchmarks();
+            }
         });
     }
 
-    private async executePerformanceBenchmarks() {
+    private async executePerformanceBenchmarks(): Promise<void> {
         const benchmarkCalls = [1, 10, 100, 1000, 10000];
         for(const challenge of this.challenges.values()) {
             LogBuilder
@@ -103,7 +107,7 @@ export default class AdventOfCodeCore implements IExtension {
         }
     }
 
-    private async executeChallenges() {
+    private async executeChallenges(): Promise<void> {
         for(const challenge of this.challenges.values()) {
             const challengeRepository = this.repositories.get(challenge.repositoryId);
             if(!challengeRepository) {
@@ -152,7 +156,7 @@ export default class AdventOfCodeCore implements IExtension {
         }
     }
 
-    private initializeRepositories() {
+    private initializeRepositories(): void {
         const repositoryOptions = this.config.repositories;
         for(const [name, options] of Object.entries(repositoryOptions)) {
             const repository = new AdventOfCodeRepository();

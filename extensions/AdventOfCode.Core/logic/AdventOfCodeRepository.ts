@@ -51,14 +51,14 @@ export default class AdventOfCodeRepository implements IAdventOfCodeRepository {
     private async fetchDayData(dayId: number): Promise<string> {
         const dataResult = fetch(`${this.options.baseUrl}/day/${dayId}/input`, {
             headers: {
-                "Cookie": this.options.cookie
-            }
+                Cookie: this.options.cookie,
+            },
         }).then(res => res.text());
 
         return dataResult;
     }
 
-    private async saveData(dayId: number, data: string) {
+    private async saveData(dayId: number, data: string): Promise<void> {
         LogBuilder
             .start()
             .level("INFO")
@@ -75,7 +75,7 @@ export default class AdventOfCodeRepository implements IAdventOfCodeRepository {
         await fsp.writeFile(this.getDayCachePath(dayId), data, "utf-8");
     }
 
-    private getDayCachePath(dayId: number) {
+    private getDayCachePath(dayId: number): string {
         return path.resolve(this.options.dataCacheLocation, String(dayId) + ".txt");
     }
 }

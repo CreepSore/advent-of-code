@@ -56,10 +56,10 @@ export default class LogBuilder {
                 }
 
                 if(appendCallstack === "debug") {
-                    builder.debugObject("info", infoObj)
+                    builder.debugObject("info", infoObj);
                 }
                 else if(appendCallstack === "always") {
-                    builder.object("info", infoObj)
+                    builder.object("info", infoObj);
                 }
 
                 builder.done();

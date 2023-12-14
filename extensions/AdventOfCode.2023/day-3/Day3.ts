@@ -2,10 +2,10 @@ import * as perfHooks from "perf_hooks";
 import IAdventOfCodeChallenge from "@extensions/AdventOfCode.Core/logic/IAdventOfCodeChallenge";
 import AdventOfCode2023 from "..";
 
-export default class Day1 implements IAdventOfCodeChallenge<string> {
-    id: string = "2023-01";
+export default class Day3 implements IAdventOfCodeChallenge<string> {
+    id: string = "2023-03";
     repositoryId: string = AdventOfCode2023.repositoryId;
-    dayId: number = 1;
+    dayId: number = 3;
     data: string;
 
     async initialize(data: string): Promise<void> {
@@ -64,56 +64,10 @@ export default class Day1 implements IAdventOfCodeChallenge<string> {
     }
 
     private solvePart1(data: string): string {
-        let intResult: number = 0;
-
-        let firstNumber: number = null;
-        let lastNumber: number = null;
-
-        [...data].forEach(currentChar => {
-            const currentCharNumber: number = Number(currentChar);
-
-            if(currentChar === "\n") {
-                intResult += (firstNumber * 10) + lastNumber;
-                firstNumber = null;
-                lastNumber = null;
-            }
-            else if(!isNaN(currentCharNumber)) {
-                if(firstNumber === null) {
-                    firstNumber = currentCharNumber;
-                }
-
-                lastNumber = currentCharNumber;
-            }
-        });
-
-        return String(intResult);
+        return "";
     }
 
     private solvePart2(data: string): string {
-        const mapping = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-        const frontRegex = /^.*?([1-9]|one|two|three|four|five|six|seven|eight|nine)/;
-        const backRegex = /^.*([1-9]|one|two|three|four|five|six|seven|eight|nine).*$/;
-
-        return String(
-            data
-                .split("\n")
-                .filter(Boolean)
-                .map(line => [line.match(frontRegex)[1], line.match(backRegex)[1], line])
-                .map(values => {
-                    let front = Number(values[0]);
-                    let back = Number(values[1]);
-
-                    if(isNaN(front)) {
-                        front = mapping.indexOf(values[0]);
-                    }
-
-                    if(isNaN(back)) {
-                        back = mapping.indexOf(values[1]);
-                    }
-
-                    return [front, back];
-                })
-                .reduce((prev, current) => prev + (current[0] * 10 + current[1]), 0),
-        );
+        return "";
     }
 }

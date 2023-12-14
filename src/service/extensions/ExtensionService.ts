@@ -122,7 +122,7 @@ export default class ExtensionService {
                 // @ts-ignore
                 extension.metadata.dependencies.includes(ext.metadata?.name) ||
                 // @ts-ignore
-                extension.metadata.dependencies.includes(ext.constructor)
+                extension.metadata.dependencies.includes(ext.constructor),
             );
         }
     }

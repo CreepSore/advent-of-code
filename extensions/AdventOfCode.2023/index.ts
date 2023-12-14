@@ -6,6 +6,8 @@ import ConfigLoader from "@logic/config/ConfigLoader";
 import Core from "@extensions/Core";
 import AdventOfCodeCore from "@extensions/AdventOfCode.Core";
 import Day1 from "./day-1/Day1";
+import Day2 from "./day-2/Day2";
+import Day3 from "./day-3/Day3";
 
 class AdventOfCode2023Config {
 
@@ -56,6 +58,8 @@ export default class AdventOfCode2023 implements IExtension {
     private async startMain(executionContext: IAppExecutionContext): Promise<void> {
         const aocCore = this.$(AdventOfCodeCore);
         aocCore.registerChallenge(new Day1());
+        aocCore.registerChallenge(new Day2());
+        aocCore.registerChallenge(new Day3());
     }
 
     private checkConfig(): void {
