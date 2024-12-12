@@ -5,6 +5,8 @@ import IExtension, { ExtensionMetadata } from "@service/extensions/IExtension";
 import ConfigLoader from "@logic/config/ConfigLoader";
 import Core from "@extensions/Core";
 import AdventOfCodeCore from "@extensions/AdventOfCode.Core";
+import Day1 from "./day-1/Day1";
+import Day2 from "./day-2/Day2";
 
 class AdventOfCode2024Config {
 
@@ -54,6 +56,8 @@ export default class AdventOfCode2024 implements IExtension {
 
     private async startMain(executionContext: IAppExecutionContext): Promise<void> {
         const aocCore = this.$(AdventOfCodeCore);
+        aocCore.registerChallenge(new Day1());
+        aocCore.registerChallenge(new Day2());
     }
 
     private checkConfig(): void {
