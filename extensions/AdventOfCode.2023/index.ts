@@ -57,9 +57,9 @@ export default class AdventOfCode2023 implements IExtension {
 
     private async startMain(executionContext: IAppExecutionContext): Promise<void> {
         const aocCore = this.$(AdventOfCodeCore);
-        aocCore.registerChallenge(new Day1());
-        aocCore.registerChallenge(new Day2());
-        aocCore.registerChallenge(new Day3());
+        // aocCore.registerChallenge(new Day1());
+        // aocCore.registerChallenge(new Day2());
+        // aocCore.registerChallenge(new Day3());
     }
 
     private checkConfig(): void {
