@@ -66,11 +66,15 @@ const buildAppConfig = (env, argv) => {
                                         legacy: true,
                                     }],
                                 ],
-                                presets: ["@babel/typescript", ["@babel/preset-env", {
-                                    targets: {
-                                        node: "18",
-                                    },
-                                }]],
+                                presets: [
+                                    "@babel/typescript",
+                                    ["@babel/preset-env", {
+                                        targets: {
+                                            node: "18",
+                                        },
+                                    }],
+                                    ["minify", {builtIns: false}]
+                                ],
                             },
                         },
                     ],
@@ -78,7 +82,7 @@ const buildAppConfig = (env, argv) => {
             ],
         },
         optimization: {
-            minimize: argv.mode === "productive",
+            minimize: false,
             moduleIds: "natural",
             mangleExports: false,
             concatenateModules: false,
